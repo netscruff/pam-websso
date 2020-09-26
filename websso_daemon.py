@@ -241,7 +241,7 @@ class loginCode(Resource):
             print("attributes: {}".format(attributes))
             uid_attr = attributes.get(self.settings.get('user_attribute'))
             if uid_attr:
-                msg['uid'] = uid_attr[0]
+                msg['uid'] = uid_attr
                 msg['result'] = 'SUCCESS'
         self.client.handleCommand(nonce, json.dumps(msg))
 
