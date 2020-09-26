@@ -241,7 +241,7 @@ class loginCode(Resource):
             print("attributes: {}".format(attributes))
             uid_attr = attributes.get(self.settings.get('user_attribute'))
             if uid_attr:
-                msg['uid'] = uid_attr
+                msg['uid'] = uid_attr[0]
                 msg['result'] = 'SUCCESS'
         self.client.handleCommand(nonce, json.dumps(msg))
 
@@ -251,7 +251,8 @@ class loginCode(Resource):
         content =  u"<html>\n<body>\n"
         content += u"{}/{} successfully authenticated<br />\n".format(nonce, msg['uid'])
         content += u"PIN: {}<br />\n".format(pin)
-        content += u"This window may be closed\n"
+        content += u"This window may be closed<br />\n"
+        context += u"Debug: {}\n".format(attributes)
         content += u"</body>\n</html>\n"
         return content.encode("ascii")
 
