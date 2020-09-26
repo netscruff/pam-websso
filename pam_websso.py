@@ -18,7 +18,7 @@ def debug(line):
 
 def pam_sm_authenticate(pamh, flags, argv):
   # debugging to /var/log/pam_websso.log
-  #debug("Test")
+  debug("Test")
 
   # Load client port from settings
   my_base = path.dirname(path.realpath(__file__))
@@ -76,7 +76,7 @@ def pam_sm_authenticate(pamh, flags, argv):
 
   result = msg['result']
   uid = msg['uid']
-
+  debug(uid)
   pamh.env['result'] = result.encode('ascii')
   pamh.env['uid'] = uid.encode('ascii')
 
